@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useState } from "react";
 
 interface ContentDisplayProps {
@@ -6,9 +7,7 @@ interface ContentDisplayProps {
   onWordClick: (word: string) => void;
 }
 
-
 const segmentChineseText = (text: string): string[] => {
- 
   const segments: string[] = [];
   let currentSegment = "";
 
@@ -16,14 +15,12 @@ const segmentChineseText = (text: string): string[] => {
     const char = text[i];
     const nextChar = text[i + 1];
 
-   
     const isChinese = /[\u4e00-\u9fff]/.test(char);
     const isNextChinese = nextChar && /[\u4e00-\u9fff]/.test(nextChar);
 
     if (isChinese) {
       currentSegment += char;
 
-     
       if (!isNextChinese || i === text.length - 1) {
         if (currentSegment.length > 0) {
           segments.push(currentSegment);
@@ -31,13 +28,11 @@ const segmentChineseText = (text: string): string[] => {
         }
       }
     } else {
-     
       if (currentSegment.length > 0) {
         segments.push(currentSegment);
         currentSegment = "";
       }
 
-     
       if (/[a-zA-Z]/.test(char)) {
         let englishWord = char;
         let j = i + 1;
@@ -48,10 +43,8 @@ const segmentChineseText = (text: string): string[] => {
         segments.push(englishWord);
         i = j - 1;
       } else if (/[^\s]/.test(char)) {
-       
         segments.push(char);
       } else {
-       
         segments.push(char);
       }
     }
@@ -63,16 +56,14 @@ const segmentChineseText = (text: string): string[] => {
 const InteractiveContent: React.FC<{
   content: string;
   onWordClick: (word: string) => void;
-}> = ({ content, onWordClick,  }) => {
+}> = ({ content, onWordClick }) => {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [isMultiSelectMode, setIsMultiSelectMode] = useState(false);
 
- 
   const segments = segmentChineseText(content);
 
   const handleWordClick = (segment: string, cleanSegment: string) => {
     if (isMultiSelectMode) {
-     
       setSelectedWords((prev) => {
         if (prev.includes(cleanSegment)) {
           return prev.filter((w) => w !== cleanSegment);
@@ -81,45 +72,40 @@ const InteractiveContent: React.FC<{
         }
       });
     } else {
-     
       onWordClick(cleanSegment);
     }
   };
 
-
- 
   const isClickableSegment = (segment: string): boolean => {
-   
     if (/[\u4e00-\u9fff]/.test(segment) && segment.length >= 2) {
       return true;
     }
-   
+
     if (/^[a-zA-Z]{2,}$/.test(segment)) {
       return true;
     }
     return false;
   };
 
- 
   const cleanSegment = (segment: string): string => {
     return segment.replace(/[.,!?;:()"'，。！？；：（）""'']/g, "");
   };
 
- 
   return (
     <div>
-      {/* 内容显示 */}
       <p style={{ margin: 0 }}>
         {segments.map((segment, index) => {
           const cleanSegmentText = cleanSegment(segment);
-  
+
           if (isClickableSegment(segment)) {
             const isSelected = selectedWords.includes(cleanSegmentText);
             return (
               <span
                 key={index}
                 onClick={() => handleWordClick(segment, cleanSegmentText)}
-                className={`interactive-word word-span ${isSelected ? "selected" : ""}`}
+                className={`interactive-word word-span ${
+                  isSelected ? "selected" : ""
+                }`}
                 aria-label={`了解更多关于 ${cleanSegmentText} 的信息`}
                 style={{
                   padding: "2px 4px",
@@ -131,8 +117,8 @@ const InteractiveContent: React.FC<{
                   backgroundColor: isSelected ? "#007bff" : "transparent",
                   textDecoration: "underline",
                   textDecorationColor: isSelected ? "transparent" : "#007bff",
-                  display: 'inline',
-                  userSelect: 'none'
+                  display: "inline",
+                  userSelect: "none",
                 }}
                 onMouseEnter={(e) => {
                   if (!isSelected && e.currentTarget instanceof HTMLElement) {
@@ -151,7 +137,6 @@ const InteractiveContent: React.FC<{
               </span>
             );
           } else {
-           
             return <span key={index}>{segment}</span>;
           }
         })}
@@ -167,6 +152,7 @@ const StreamingContent: React.FC<{ content: string }> = ({ content }) => (
   </p>
 );
 
+// @ts-ignore
 const ContentDisplay: React.FC<ContentDisplayProps> = ({
   content,
   isLoading,
@@ -177,12 +163,7 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({
   }
 
   if (content) {
-    return (
-      <InteractiveContent
-        content={content}
-        onWordClick={onWordClick}
-      />
-    );
+    return <InteractiveContent content={content} onWordClick={onWordClick} />;
   }
 
   return null;

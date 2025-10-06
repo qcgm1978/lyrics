@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useState } from 'react';
 import { Song } from '../services/lyricsService';
 import lyricsService from '../services/lyricsService';

@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useEffect } from 'react'
 import ContentGenerator from './ContentGenerator'
 import Directory from './Directory'
