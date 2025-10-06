@@ -7,7 +7,7 @@ interface ContentDisplayProps {
   onWordClick: (word: string) => void;
 }
 
-const segmentChineseText = (text: string): string[] => {
+export const segmentChineseText = (text: string): string[] => {
   const segments: string[] = [];
   let currentSegment = "";
 

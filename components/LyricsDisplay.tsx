@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Song, Lyrics } from '../services/lyricsService';
 import audioManager from '../utils/audioManager';
+import { segmentChineseText } from './ContentDisplay';
 
 interface LyricsDisplayProps {
   song: Song;
@@ -12,6 +13,8 @@ interface LyricsDisplayProps {
 
 const LyricsDisplay: React.FC<LyricsDisplayProps> = ({ song, lyrics, onLyricClick, language }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedWords, setSelectedWords] = useState<string[]>([]);
+  const [isMultiSelectMode, setIsMultiSelectMode] = useState(false);
   
   useEffect(() => {
     const checkAudioStatus = () => {
@@ -36,6 +39,97 @@ const LyricsDisplay: React.FC<LyricsDisplayProps> = ({ song, lyrics, onLyricClic
         });
       }
     }
+  };
+  
+  const cleanSegment = (segment: string): string => {
+    return segment.replace(/[.,!?;:()"'，。！？；：（）""'']/g, "");
+  };
+  
+  const isClickableSegment = (segment: string): boolean => {
+    if (/[\u4e00-\u9fff]/.test(segment) && segment.length >= 2) {
+      return true;
+    }
+    
+    if (/^[a-zA-Z]{2,}$/.test(segment)) {
+      return true;
+    }
+    return false;
+  };
+  
+  const handleWordClick = (segment: string, cleanSegment: string, line: string) => {
+    if (isMultiSelectMode) {
+      setSelectedWords((prev) => {
+        if (prev.includes(cleanSegment)) {
+          return prev.filter((w) => w !== cleanSegment);
+        } else {
+          return [...prev, cleanSegment];
+        }
+      });
+    } else {
+      onLyricClick(cleanSegment);
+    }
+  };
+  
+  const renderLyricLine = (line: string, index: number) => {
+    const segments = segmentChineseText(line);
+    
+    return (
+      <p 
+        key={index} 
+        className="lyric-line"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            onLyricClick(line);
+          }
+        }}
+      >
+        {segments.map((segment, segIndex) => {
+          const cleanSegmentText = cleanSegment(segment);
+          
+          if (isClickableSegment(segment)) {
+            const isSelected = selectedWords.includes(cleanSegmentText);
+            return (
+              <span
+                key={segIndex}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleWordClick(segment, cleanSegmentText, line);
+                }}
+                style={{
+                  padding: "2px 4px",
+                  margin: "0 1px",
+                  cursor: "pointer",
+                  borderRadius: "4px",
+                  transition: "all 0.2s ease",
+                  color: isSelected ? "#fff" : "#007bff",
+                  backgroundColor: isSelected ? "#007bff" : "transparent",
+                  textDecoration: "underline",
+                  textDecorationColor: isSelected ? "transparent" : "#007bff",
+                  display: "inline",
+                  userSelect: "none",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSelected && e.currentTarget instanceof HTMLElement) {
+                    e.currentTarget.style.backgroundColor = "#f0f8ff";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSelected && e.currentTarget instanceof HTMLElement) {
+                    e.currentTarget.style.backgroundColor = isSelected
+                      ? "#007bff"
+                      : "transparent";
+                  }
+                }}
+              >
+                {segment}
+              </span>
+            );
+          } else {
+            return <span key={segIndex}>{segment}</span>;
+          }
+        })}
+      </p>
+    );
   };
   
   if (!lyrics) {
@@ -63,15 +157,7 @@ const LyricsDisplay: React.FC<LyricsDisplayProps> = ({ song, lyrics, onLyricClic
       </div>
       
       <div className="lyrics-content">
-        {lyrics.lines.map((line, index) => (
-          <p 
-            key={index} 
-            className="lyric-line"
-            onClick={() => onLyricClick(line)}
-          >
-            {line}
-          </p>
-        ))}
+        {lyrics.lines.map((line, index) => renderLyricLine(line, index))}
       </div>
     </div>
   );
