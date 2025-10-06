@@ -43,3 +43,4 @@ public/release/*
 .vercel
 
 *.mp3
+public/release/*
