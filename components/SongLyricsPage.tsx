@@ -1,9 +1,10 @@
+// @ts-ignore
 import { useState } from 'react';
 import SongSearch from './SongSearch';
 import LyricsDisplay from './LyricsDisplay';
 import { Song, Lyrics } from '../services/lyricsService';
 import lyricsService from '../services/lyricsService';
-
+import '../lyrics.css';
 interface SongLyricsPageProps {
   onLyricClick?: (lyric: string) => void;
   language?: 'en' | 'zh';

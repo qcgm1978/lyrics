@@ -1,0 +1,316 @@
+#root header {
+  position: absolute;
+  text-align: center;
+  right: 2rem;
+  top: 1rem;
+  background: inherit;
+}
+/* 主页面容器 */
+.song-lyrics-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索区域 */
+.song-search-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.song-search-section:hover {
+  transform: translateY(-2px);
+}
+
+.song-search-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #667eea;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #667eea;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 歌词展示区域 */
+.lyrics-display-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.lyrics-display-section:hover {
+  transform: translateY(-2px);
+}
+
+.lyrics-display-section h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #667eea;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 歌词容器 */
+.lyrics-container {
+  width: 100%;
+}
+
+/* 歌曲信息 */
+.song-info {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.song-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.song-info p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* 播放按钮 */
+.play-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* 歌词内容 */
+.lyrics-content {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #f0f0f0;
+}
+
+.lyrics-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lyrics-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.lyrics-content::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+.lyrics-content::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+/* 歌词行 */
+.lyric-line {
+  padding: 12px 20px;
+  margin: 8px 0;
+  background: #f8f9fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #495057;
+  border-left: 4px solid transparent;
+}
+
+.lyric-line:hover {
+  background: #e9ecef;
+  transform: translateX(10px);
+  border-left: 4px solid #667eea;
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.1);
+}
+
+/* 无歌词提示 */
+.no-lyrics-message {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  font-size: 18px;
+  color: #6c757d;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .song-lyrics-page {
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  .song-search-section,
+  .lyrics-display-section {
+    padding: 20px;
+  }
+
+  .song-search-section h2,
+  .lyrics-display-section h2 {
+    font-size: 24px;
+  }
+
+  .song-info h3 {
+    font-size: 20px;
+  }
+
+  .lyric-line {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
+
+  .play-button {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .song-search-section,
+  .lyrics-display-section {
+    padding: 15px;
+  }
+
+  .song-search-section h2,
+  .lyrics-display-section h2 {
+    font-size: 20px;
+  }
+
+  .lyric-line {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* 搜索按钮样式 */
+.search-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  min-width: 100px;
+}
+
+.search-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.search-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.search-button:disabled {
+  background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索表单样式补充 */
+.song-search-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.song-search-section input {
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.song-search-section input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 响应式设计 - 搜索按钮 */
+@media (max-width: 768px) {
+  .search-button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+  
+  .song-search-section input {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .song-search-section form {
+    width: 100%;
+  }
+}

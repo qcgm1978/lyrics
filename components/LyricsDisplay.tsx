@@ -1,3 +1,4 @@
+// @ts-ignore
 import { useState, useEffect } from 'react';
 import { Song, Lyrics } from '../services/lyricsService';
 import audioManager from '../utils/audioManager';
