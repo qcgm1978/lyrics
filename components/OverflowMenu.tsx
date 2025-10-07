@@ -252,9 +252,9 @@ const Header: React.FC<HeaderProps> = ({
                   gap: "0.5rem",
                   marginBottom: "0.5rem",
                 }}
-                title={language === "zh" ? "返回目录页面" : "Back to Directory"}
+                title={language === "zh" ? "返回首页" : "Back to Home"}
               >
-                📑 {language === "zh" ? "返回目录" : "Back to Directory"}
+                📑 {language === "zh" ? "返回首页" : "Back to Home"}
               </button>
 
               {/* 书籍上传按钮 */}
