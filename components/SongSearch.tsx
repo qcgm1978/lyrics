@@ -17,11 +17,13 @@ const SongSearch: React.FC<SongSearchProps> = ({
   const [query, setQuery] = useState<string>('泡沫');
   const [results, setResults] = useState<Song[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
       setIsSearching(true);
+      setHasSearched(true);
       try {
         const searchResults = await lyricsService.searchSongs(query);
         setResults(searchResults);
@@ -76,7 +78,7 @@ const SongSearch: React.FC<SongSearchProps> = ({
         </div>
       )}
       
-      {isSearching === false && results.length === 0 && query.trim() !== '' && (
+      {hasSearched && isSearching === false && results.length === 0 && query.trim() !== '' && (
         <div className="no-results">
           {language === 'zh' ? '未找到匹配的歌曲' : 'No matching songs found'}
         </div>
