@@ -1,8 +1,16 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+// 读取 package.json 文件
+const packageJsonPath = resolve(__dirname, 'package.json');
+const packageJsonContent = readFileSync(packageJsonPath, 'utf-8');
+const packageJson = JSON.parse(packageJsonContent);
+const displayName = packageJson.displayName;
 
 const config: CapacitorConfig = {
   appId: 'com.revelation.app',
-  appName: '启示路',
+  appName: displayName,
   webDir: 'dist',
   android: {
     webView: {
