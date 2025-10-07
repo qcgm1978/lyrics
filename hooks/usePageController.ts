@@ -250,7 +250,6 @@ export const usePageController = ({
   }
 
 
-  // 修改 handleSearch 函数，传递 language 参数给 get_page_chapter_txt
   const handleSearch = (topic: string, page?: Array<string>, category?: string, context?: string) => {
     const newTopic = topic.trim()
     if (newTopic) {
@@ -279,7 +278,6 @@ export const usePageController = ({
         urlParams.append('context', encodeURIComponent(context))
       }
 
-      // todo 跳转后页面没有处理
       window.history.pushState(
         { historyIndex: newIndex, topic: newTopic, page: page, category: category, context: context },
         '',

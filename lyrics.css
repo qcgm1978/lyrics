@@ -153,6 +153,7 @@
 
 /* 歌词行 */
 .lyric-line {
+  width: 88%;
   padding: 12px 20px;
   margin: 8px 0;
   background: #f8f9fa;
@@ -296,7 +297,7 @@
     padding: 10px 20px;
     font-size: 15px;
   }
-  
+
   .song-search-section input {
     padding: 10px 16px;
     font-size: 15px;
@@ -309,7 +310,7 @@
     font-size: 14px;
     width: 100%;
   }
-  
+
   .song-search-section form {
     width: 100%;
   }

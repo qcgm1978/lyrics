@@ -1,7 +1,7 @@
 import React from "react";
 
 // 首先在文件顶部添加Capacitor的导入
-import { Capacitor } from '@capacitor/core';
+import { Capacitor } from "@capacitor/core";
 
 interface HeaderProps {
   language: "zh" | "en";
@@ -177,9 +177,20 @@ const Header: React.FC<HeaderProps> = ({
                   gap: "0.5rem",
                   marginBottom: "0.5rem",
                 }}
-                title={language === "zh" ? "歌曲搜索和歌词查看" : "Song Search & Lyrics"}
+                title={
+                  language === "zh"
+                    ? "歌曲搜索和歌词查看"
+                    : "Song Search & Lyrics"
+                }
               >
-                🎵 {showSongLyricsPage ? (language === "zh" ? "退出歌曲模式" : "Exit Song Mode") : (language === "zh" ? "歌曲搜索" : "Song Search")}
+                🎵{" "}
+                {showSongLyricsPage
+                  ? language === "zh"
+                    ? "退出歌曲模式"
+                    : "Exit Song Mode"
+                  : language === "zh"
+                  ? "歌曲搜索"
+                  : "Song Search"}
               </button>
 
               <button
@@ -206,21 +217,23 @@ const Header: React.FC<HeaderProps> = ({
                 title={
                   hasValidApiKey
                     ? language === "zh"
-                      ? "API 密钥已配置" : "API Key Configured"
+                      ? "API 密钥已配置"
+                      : "API Key Configured"
                     : language === "zh"
-                    ? "配置 API 密钥" : "Configure API Key"
+                    ? "配置 API 密钥"
+                    : "Configure API Key"
                 }
               >
                 {hasValidApiKey ? "🔑" : "⚙️"}
                 {language === "zh" ? "语言模型" : "Language Model"}
               </button>
 
-              {/* 返回目录按钮 */}
               <button
                 onClick={() => {
                   const directoryTopic =
                     language === "zh" ? "目录" : "Directory";
                   handleSearch(directoryTopic);
+                  setShowSongLyricsPage(true);
                   setIsOverflowMenuOpen(false);
                 }}
                 style={{
@@ -292,7 +305,8 @@ const Header: React.FC<HeaderProps> = ({
               <a
                 href={
                   // 使用Capacitor API检测是否为原生Android应用
-                  (Capacitor.isNativePlatform() && navigator.userAgent.includes('Android'))
+                  Capacitor.isNativePlatform() &&
+                  navigator.userAgent.includes("Android")
                     ? "https://qcgm1978.github.io/revelation"
                     : "https://qcgm1978.github.io/revelation/download.html"
                 }
@@ -300,7 +314,8 @@ const Header: React.FC<HeaderProps> = ({
                 rel="noopener noreferrer"
                 className="external-link"
               >
-                {(Capacitor.isNativePlatform() && navigator.userAgent.includes('Android'))
+                {Capacitor.isNativePlatform() &&
+                navigator.userAgent.includes("Android")
                   ? "🌐 " +
                     (language === "zh" ? "打开网页版" : "Open Web Version")
                   : "📱 " +
