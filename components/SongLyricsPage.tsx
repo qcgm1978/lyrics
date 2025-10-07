@@ -8,11 +8,13 @@ import '../lyrics.css';
 interface SongLyricsPageProps {
   onLyricClick?: (lyric: string) => void;
   language?: 'en' | 'zh';
+  setIsApiKeyManagerOpen?: () => void;
 }
 
 const SongLyricsPage: React.FC<SongLyricsPageProps> = ({ 
   onLyricClick,
-  language = 'zh'
+  language = 'zh',
+  setIsApiKeyManagerOpen
 }) => {
   const [selectedSong, setSelectedSong] = useState<Song | null>(null);
   const [lyrics, setLyrics] = useState<Lyrics | null>(null);
@@ -41,7 +43,11 @@ const SongLyricsPage: React.FC<SongLyricsPageProps> = ({
     <div className="song-lyrics-page">
       <div className="song-search-section">
         <h2>{language === 'zh' ? '搜索歌曲' : 'Search Songs'}</h2>
-        <SongSearch onSongSelect={handleSongSelect} language={language} />
+        <SongSearch 
+          onSongSelect={handleSongSelect} 
+          language={language} 
+          setIsApiKeyManagerOpen={setIsApiKeyManagerOpen}
+        />
       </div>
       
       {isLoading && (

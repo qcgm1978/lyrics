@@ -6,9 +6,14 @@ import lyricsService from '../services/lyricsService';
 interface SongSearchProps {
   onSongSelect: (song: Song) => void;
   language?: 'en' | 'zh';
+  setIsApiKeyManagerOpen?: () => void;
 }
 
-const SongSearch: React.FC<SongSearchProps> = ({ onSongSelect, language = 'zh' }) => {
+const SongSearch: React.FC<SongSearchProps> = ({ 
+  onSongSelect, 
+  language = 'zh',
+  setIsApiKeyManagerOpen
+}) => {
   const [query, setQuery] = useState<string>('泡沫');
   const [results, setResults] = useState<Song[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
@@ -20,6 +25,9 @@ const SongSearch: React.FC<SongSearchProps> = ({ onSongSelect, language = 'zh' }
       try {
         const searchResults = await lyricsService.searchSongs(query);
         setResults(searchResults);
+        if(searchResults.length==0 && setIsApiKeyManagerOpen){
+          setIsApiKeyManagerOpen();
+        }
       } catch (error) {
         console.error('Search failed:', error);
         setResults([]);

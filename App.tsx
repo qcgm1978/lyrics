@@ -1,8 +1,10 @@
+// @ts-ignore
 import React, { useState, useEffect } from "react";
 import {
   hasApiKey,
   setHasShownApiKeyPrompt,
   ApiKeyManager,
+  updateSelectedPromptType
 } from "llm-service-provider";
 import DocumentRenderer from "./components/DocumentRenderer";
 import Header from "./components/OverflowMenu";
@@ -12,15 +14,11 @@ import { usePageController } from "./hooks/usePageController";
 import { initializeGestureHandler } from "./utils/gestureHandler";
 import SongLyricsPage from "./components/SongLyricsPage";
 // import TTSDebugTool from './utils/testTTs'
+updateSelectedPromptType('简洁定义');
+
 const App: React.FC = () => {
   // 使用API密钥管理器
   const [showApiManager, setShowApiManager] = useState(!hasApiKey());
-
-  // 处理API密钥保存
-  const handleApiKeySave = (key: string) => {
-    console.log("API密钥已保存");
-    setShowApiManager(false);
-  };
 
   const [availableTracks, setAvailableTracks] = useState<
     Array<{
@@ -287,7 +285,11 @@ const App: React.FC = () => {
       />
 
       {showSongLyricsPage ? (
-        <SongLyricsPage onLyricClick={handleLyricClick} language={language} />
+        <SongLyricsPage 
+          onLyricClick={handleLyricClick} 
+          language={language}
+          setIsApiKeyManagerOpen={() => setIsApiKeyManagerOpen(true)}
+        />
       ) : (
         <DocumentRenderer
           currentTopic={currentTopic}
