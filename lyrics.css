@@ -184,7 +184,10 @@
   font-weight: 500;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
+.search-results{
+    margin-top: 1rem;
+    line-height: 2rem;
+}
 /* 响应式设计 */
 @media (max-width: 768px) {
   .song-lyrics-page {
@@ -314,4 +317,50 @@
   .song-search-section form {
     width: 100%;
   }
+}
+
+/* 搜索结果项样式 */
+.song-result-item {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.song-result-item:hover {
+  background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+/* 歌曲名称样式 */
+.song-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 4px;
+}
+
+/* 艺术家名称样式 */
+.song-artist {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+/* 专辑名称样式 */
+.song-album {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+}
+
+/* 交替行背景色，进一步区分不同项目 */
+.search-results > div:nth-child(even) {
+  background: rgba(248, 249, 250, 0.95);
 }

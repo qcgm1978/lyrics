@@ -326,7 +326,7 @@ const App: React.FC = () => {
           onSave={handleApiKeyChange}
           defaultPromptType="简洁定义"
           language={language}
-          compactTemplate={false}
+          compactTemplate={true}
           styleVariant="comic1"
           onClose={() => {
             setIsApiKeyManagerOpen(false);
