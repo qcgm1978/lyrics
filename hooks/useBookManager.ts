@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { DirectoryData } from '../types/directory';
 import { formatFileContentFromString } from '../utils/fileProcessor';
 import { loadData } from '../services/dataService';
+import packageJson from '../package.json';
 
 
 const UPLOADED_BOOKS_KEY = 'revelation_uploaded_books';
@@ -88,7 +89,7 @@ const useBookManager = (language: 'zh' | 'en'): BookManagerResult => {
             setCurrentBookTitle(directoryData.title);
           }
         } else {
-          setCurrentBookTitle(language === 'zh' ? '启示路' : 'Revelation');
+          setCurrentBookTitle(packageJson.displayName);
         }
       }
     } catch (error) {

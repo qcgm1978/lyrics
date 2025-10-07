@@ -9,7 +9,7 @@ interface SongSearchProps {
 }
 
 const SongSearch: React.FC<SongSearchProps> = ({ onSongSelect, language = 'zh' }) => {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>('泡沫');
   const [results, setResults] = useState<Song[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 

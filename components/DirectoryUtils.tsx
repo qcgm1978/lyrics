@@ -1,7 +1,7 @@
 import { FaPlay } from 'react-icons/fa6'
 import { DirectoryData, DirectoryItem } from '../types/directory'
 import audioManager from '../utils/audioManager'
-import categoryTranslations from '../public/extraction_results_category.json'
+// import categoryTranslations from '../public/extraction_results_category.json'
 
 
 const styleElement = document.createElement('style');

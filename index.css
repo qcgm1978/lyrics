@@ -200,6 +200,7 @@ button {
 }
 header {
   position: absolute;
+  z-index: 10;
   text-align: center;
   right: 1rem;
   top: 0;
