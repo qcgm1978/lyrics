@@ -260,7 +260,6 @@ const App: React.FC = () => {
   };
 
   const handleLyricClick = (lyric: string) => {
-    // 当用户点击歌词时，可以在这里实现跳转到对应的Wiki信息
     handleSearch(lyric);
     setShowSongLyricsPage(false);
   };
