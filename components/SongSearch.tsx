@@ -28,7 +28,7 @@ const SongSearch: React.FC<SongSearchProps> = ({
         const searchResults = await lyricsService.searchSongs(query);
         setResults(searchResults);
         if(searchResults.length==0 && setIsApiKeyManagerOpen){
-          setIsApiKeyManagerOpen();
+          // setIsApiKeyManagerOpen();
         }
       } catch (error) {
         console.error('Search failed:', error);
