@@ -1,25 +1,23 @@
 {
-  "name": "revelation",
+  "name": "lyrics",
   "displayName": "歌词赏析",
   "version": "1.0.0",
   "description": "歌词赏析 - 一款无限知识库应用",
   "private": true,
   "type": "module",
-  "homepage": "https://qcgm1978.github.io/revelation/",
+  "homepage": "https://qcgm1978.github.io/lyrics",
   "scripts": {
     "dev": "vite",
     "sync": "cnpm sync llm-service-provider",
     "update": "sudo  chmod -R 777 ./ && cnpm update llm-service-provider",
     "build": "node sync-app-name.js && vite build && mkdir -p dist/assets/android && cp -r assets/android/* dist/assets/android/",
     "sync-app-name": "node sync-app-name.js",
-    "deploy": "vite build && npx gh-pages -d dist -r https://github.com/qcgm1978/revelation.git -f",
     "preview": "vite preview",
     "format-file": "node utils/fileFormatter.js",
     "capacitor:build:android": "sudo npm run build && sudo npx cap sync android && sudo npx cap open android",
     "capacitor:build:android:noopen": "sudo npm run build && sudo npx cap sync android && cd android && sudo chmod -R 777 ./",
     "capacitor:build:android:ci": "npm run build && npx cap sync android && cd android && ./gradlew assembleDebug",
-    "vercel": "vercel",
-    "deploy:gh-pages": "vite build && npx gh-pages -d dist -r https://github.com/qcgm1978/revelation.git -f"
+    "vercel": "vercel"
   },
   "dependencies": {
     "@capacitor-community/text-to-speech": "^6.0.0",

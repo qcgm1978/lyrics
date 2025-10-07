@@ -12,7 +12,7 @@ Online experience: Users can directly use the lyrics analysis function on [this 
 
 Vercel deployment: Users can experience it online at [Vercel](http://lyrics-gray.vercel.app/).
 
-[Android version download](https://qcgm1978.github.io/revelation/download.html)
+[Android version download](https://qcgm1978.github.io/lyrics/download.html)
 
 ## Core Features
 

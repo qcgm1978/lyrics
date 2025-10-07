@@ -14,7 +14,7 @@
 
 Vercel 部署：用户可以在[Vercel](http://lyrics-gray.vercel.app/)在线体验。
 
-[安卓版下载](https://qcgm1978.github.io/revelation/download.html)
+[安卓版下载](https://qcgm1978.github.io/lyrics/download.html)
 
 ## 核心功能
 
