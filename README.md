@@ -11,6 +11,7 @@
 - Gemini：需要配置API key
 - 讯飞：需要配置API key和API secret
 - YouChat：直接可用，无需配置密钥
+- 其他模型：根据需要配置API key
 
 Vercel 部署：用户可以在[Vercel](http://lyrics-gray.vercel.app/)在线体验。
 
